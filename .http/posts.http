@@ -1,0 +1,34 @@
+### Get all posts
+GET http://localhost:8000/api/posts
+Accept: application/json
+
+### Get a specific post
+GET http://localhost:8000/api/posts/1
+Accept: application/json
+
+### Create a new post
+POST http://localhost:8000/api/posts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "My First Post",
+  "content": "This is the content of the post.",
+  "user_id": 1,
+  "tags": [1, 2]
+}
+
+### Update an existing post
+PUT http://localhost:8000/api/posts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Updated Post Title",
+  "content": "Updated content of the post.",
+  "tags": [2, 3]
+}
+
+### Delete a post
+DELETE http://localhost:8000/api/posts/1
+Accept: application/json

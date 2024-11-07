@@ -1,0 +1,29 @@
+### Get all tags
+GET http://localhost:8000/api/tags
+Accept: application/json
+
+### Get a specific tag
+GET http://localhost:8000/api/tags/1
+Accept: application/json
+
+### Create a new tag
+POST http://localhost:8000/api/tags
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Technology"
+}
+
+### Update an existing tag
+PUT http://localhost:8000/api/tags/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Science"
+}
+
+### Delete a tag
+DELETE http://localhost:8000/api/tags/1
+Accept: application/json
