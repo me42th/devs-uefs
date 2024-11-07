@@ -1,66 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Teste Técnico para a vaga de Engenheiro de Software no projeto UEFS - Avansys/ACP Group
+Este desafio técnico é destinado aos candidatos à posição de Engenheiro de Software no projeto UEFS - Avansys/ACP Group. O objetivo é avaliar as competências em desenvolvimento de software através da criação de uma API Restful utilizando PHP, Laravel (versão 8 ou superior), um Sistema de Gerenciamento de Banco de Dados (SGBD) de sua escolha, e Docker. O prazo para a realização deste teste é de 5 dias, e a entrega deve ser feita por meio do GitHub para análise.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Para participar, faça um fork do repositório, aplique a solução proposta e envie para nossa avaliação.
 
-## About Laravel
+Critérios de Avaliação Técnica por Nível de Senioridade
+Para Todos os Níveis
+Conhecimento e Uso de Recursos do Laravel
+Familiaridade com Docker e Docker Compose
+Organização e Documentação do Código
+Implementação Efetiva de uma API Restful
+Utilização Adequada dos Recursos do SGBD Escolhido
+Júnior
+Fundamentos de Lógica de Programação: Capacidade de implementar lógicas simples e eficientes.
+Conhecimento Básico dos Princípios SOLID: Compreensão básica e aplicação em cenários simples.
+Adesão aos Padrões PSR: Implementação básica dos padrões de estilo de código PHP.
+Uso Inicial de Testes Unitários (PHPUnit ou PEST) - Não é obrigatório: Conhecimento básico e aplicação inicial em casos simples.
+Pleno
+Lógica de Programação Avançada: Habilidade em desenvolver soluções mais complexas e eficientes.
+Aplicação Avançada dos Princípios SOLID: Implementação consistente dos princípios em cenários mais complexos.
+Testes Unitários Avançados (PHPUnit ou PEST): Habilidade em escrever testes unitários mais abrangentes e complexos.
+Otimização e Performance do Código: Capacidade de otimizar o código para melhor desempenho.
+Sênior
+Lógica de Programação Avançada: Habilidade em desenvolver soluções mais complexas e eficientes.
+Aplicação Avançada dos Princípios SOLID: Implementação consistente dos princípios em cenários mais complexos.
+Arquitetura de Software e Design de Soluções: Habilidade em projetar e implementar arquiteturas complexas e eficientes.
+Liderança Técnica em Práticas de Desenvolvimento: Orientação e mentoria para outros desenvolvedores, promoção de boas práticas.
+Testes Unitários e de Integração Avançados: Proficiência em criar uma suíte de testes abrangente, incluindo testes de integração.
+Análise e Resolução de Problemas Complexos: Capacidade de analisar e resolver problemas técnicos complexos e desafiadores.
+Otimização e Performance do Código: Capacidade de otimizar o código para melhor desempenho.
+Documentação Técnica Abrangente: Uma documentação completa e detalhada é essencial. Isso inclui não apenas a documentação da API com informações claras sobre endpoints, parâmetros, formatos de requisição e resposta, mas também uma visão geral do software, descrevendo sua arquitetura, componentes principais, e instruções passo a passo para instalação, configuração e utilização. A documentação deve ser estruturada de forma que seja acessível tanto para desenvolvedores quanto para usuários finais, garantindo uma compreensão abrangente do sistema como um todo.
+Tarefas
+Desenvolva uma API em Laravel que inclua o CRUD para:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Usuários
+Posts
+Tags
+As regras de estruturação da modelagem são:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O usuário (users) possui diferentes postagens (posts).
+As postagens (posts) possuem várias palavras-chave (tags).
+Implemente os seguintes endpoints com operações CRUD para:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Usuários
+Posts
+Tags
+NOTA: As rotas devem ser acessadas com o prefixo /api. Por exemplo: /api/posts
+É essencial o desenvolvimento de um Dockerfile e um docker-compose para garantir que o projeto seja executado na máquina do avaliador.
+É de suma importância a descrição detalhada dos endpoints e funcionalidades para que o avaliador possa testar o projeto em sua máquina.
 
-## Learning Laravel
+Opcionais (Não obrigatórios, mas recomendados)
+Implementação de testes unitários.
+Uso de Swagger ou Scribe Documentation.
+Criação de uma interface gráfica simples para exposição dos dados (React, Vue, Bootstrap, Blade ou Livewire).
+Após a avaliação técnica, em caso de aprovação, entraremos em contato para uma conversa técnica sobre a implementação. Se o candidato não for aprovado, forneceremos um retorno com o aviso e o motivo.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Boa sorte!
+Equipe de Desenvolvimento AVANSYS/ACP - Projeto UEFS
