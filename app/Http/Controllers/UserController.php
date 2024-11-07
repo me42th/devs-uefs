@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,18 +16,12 @@ class UserController extends Controller
     }
 
     // Criar um novo usuário
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
         ]);
 
         return response()->json($user, 201);
@@ -43,24 +38,11 @@ class UserController extends Controller
     }
 
     // Atualizar um usuário existente
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'Usuário não encontrado'], 404);
-        }
+        $user = User::findOrFail($id);
 
-        $request->validate([
-            'name' => 'string|max:255',
-            'email' => 'email|unique:users,email,' . $id,
-            'password' => 'min:6',
-        ]);
-
-        $user->update([
-            'name' => $request->name ?? $user->name,
-            'email' => $request->email ?? $user->email,
-            'password' => $request->password ? Hash::make($request->password) : $user->password,
-        ]);
+        $user->update($request->validated());
 
         return response()->json($user, 200);
     }

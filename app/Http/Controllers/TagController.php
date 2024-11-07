@@ -3,68 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
+use Illuminate\Http\JsonResponse;
 
 class TagController extends Controller
 {
     // Listar todas as tags
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(Tag::all(), 200);
+        $tags = Tag::all();
+        return response()->json($tags, 200);
     }
 
     // Criar uma nova tag
-    public function store(Request $request)
+    public function store(StoreTagRequest $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:tags',
-        ]);
-
-        $tag = Tag::create([
-            'name' => $request->name,
-        ]);
-
+        $tag = Tag::create($request->validated());
         return response()->json($tag, 201);
     }
 
     // Obter uma tag específica
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $tag = Tag::find($id);
+
         if (!$tag) {
             return response()->json(['message' => 'Tag não encontrada'], 404);
         }
+
         return response()->json($tag, 200);
     }
 
     // Atualizar uma tag existente
-    public function update(Request $request, $id)
+    public function update(UpdateTagRequest $request, $id): JsonResponse
     {
         $tag = Tag::find($id);
+
         if (!$tag) {
             return response()->json(['message' => 'Tag não encontrada'], 404);
         }
 
-        $request->validate([
-            'name' => 'string|max:255|unique:tags,name,' . $id,
-        ]);
-
-        $tag->update([
-            'name' => $request->name ?? $tag->name,
-        ]);
+        $tag->update($request->validated());
 
         return response()->json($tag, 200);
     }
 
     // Excluir uma tag
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $tag = Tag::find($id);
+
         if (!$tag) {
             return response()->json(['message' => 'Tag não encontrada'], 404);
         }
 
         $tag->delete();
+
         return response()->json(['message' => 'Tag deletada com sucesso'], 200);
     }
 }

@@ -3,33 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
     // Listar todos os posts
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(Post::with('tags', 'user')->get(), 200);
+        $posts = Post::with('tags', 'user')->get();
+        return response()->json($posts, 200);
     }
 
     // Criar um novo post
-    public function store(Request $request)
+    public function store(StorePostRequest $request): JsonResponse
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'user_id' => 'required|exists:users,id',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
-        ]);
-
         $post = Post::create([
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => $request->user_id,
         ]);
 
+        // Sincronizar as tags, se existirem
         if ($request->has('tags')) {
             $post->tags()->sync($request->tags);
         }
@@ -38,35 +34,29 @@ class PostController extends Controller
     }
 
     // Obter um post específico
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $post = Post::with('tags', 'user')->find($id);
+
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);
         }
+
         return response()->json($post, 200);
     }
 
     // Atualizar um post existente
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, $id): JsonResponse
     {
         $post = Post::find($id);
+
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);
         }
 
-        $request->validate([
-            'title' => 'string|max:255',
-            'content' => 'string',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
-        ]);
+        $post->update($request->validated());
 
-        $post->update([
-            'title' => $request->title ?? $post->title,
-            'content' => $request->content ?? $post->content,
-        ]);
-
+        // Sincronizar as tags, se existirem
         if ($request->has('tags')) {
             $post->tags()->sync($request->tags);
         }
@@ -75,14 +65,16 @@ class PostController extends Controller
     }
 
     // Excluir um post
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $post = Post::find($id);
+
         if (!$post) {
             return response()->json(['message' => 'Post não encontrado'], 404);
         }
 
         $post->delete();
+
         return response()->json(['message' => 'Post deletado com sucesso'], 200);
     }
 }
